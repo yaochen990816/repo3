@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+        <!--   2018501066-姚晨    -->
+    
+    <package name="default" extends="struts-default" namespace="/">
+        <global-results>
+            <result name="1">/index.jsp</result>
+        </global-results>
+
+        <action name="form" class="cn.yc0816.FormAction"/>
+
+
+        <!--直接配置-->
+        <action name="yes" class="cn.yc0816.UserAdd" method="yes">
+            <result name="yes">/yes.jsp</result>
+        </action>
+        <!--单匹配 yes_yes -->
+        <!--<action name="yes_*" class="cn.yc0816.UserAdd" method="{1}">
+            <result name="yes">/yes.jsp</result>
+        </action>-->
+        <!--双匹配 匹配不能多用 go_test1 -->
+        <action name="*_*" class="cn.yc0816.{1}Action" method="{2}">
+            <result>/index.jsp</result>
+            <result name="1">/{2}.jsp</result>
+            <result name="2">/{2}.jsp</result>
+            <result name="3">/{2}.jsp</result>
+        </action>
+        <!--多重匹配   Hello_ggg_cn_yc0816_domain -->
+        <!--<action name="*_*_*_*_*" class="{3}.{4}.{5}.{1}Action" method="{2}">
+            <result name="111">/{2}.jsp</result>
+        </action>-->
+    </package>
+</struts>
